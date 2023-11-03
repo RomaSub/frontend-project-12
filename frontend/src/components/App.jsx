@@ -1,15 +1,19 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router, Routes, Route,
+} from 'react-router-dom';
 import LoginPage from './LoginPage.jsx';
+import Header from './Header.jsx';
 import NotFoundPage from './NotFoundPage.jsx';
 
 const App = () => (
-  <BrowserRouter>
+  <Router>
+    <Header />
     <Routes>
       <Route path="*" element={<NotFoundPage />} />
       <Route path="login" element={<LoginPage />} />
       <Route path="/" element={<LoginPage />} />
     </Routes>
-  </BrowserRouter>
+  </Router>
 );
 
 export default App;

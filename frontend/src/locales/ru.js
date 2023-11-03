@@ -1,5 +1,6 @@
 const ru = {
   translation: {
+    logo: 'Hexlet Chat',
     username: 'Ваш ник',
     password: 'Пароль',
     enter: 'Войти',
