@@ -1,0 +1,6 @@
+.github/
+dist/
+build
+coverage
+*.md
+.git-blame-ignore-revs
