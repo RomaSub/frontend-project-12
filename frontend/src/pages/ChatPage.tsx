@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { getRoutes } from "../routes";
+import { Link } from 'react-router-dom';
+import { getRoutes } from '../routes';
 
 export const ChatPage = () => {
   return (

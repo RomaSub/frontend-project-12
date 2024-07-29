@@ -1,5 +1,3 @@
 export const SignUpPage = () => {
-  return (
-      <h1 className='text-center'>Регистрация</h1>
-  );
+  return <h1 className='text-center'>Регистрация</h1>;
 };

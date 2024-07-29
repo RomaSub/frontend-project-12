@@ -3,9 +3,18 @@ import { NavLink } from 'react-router-dom';
 import loginImage from '../assets/enterAvatar.jpeg';
 import { getRoutes } from '../routes';
 import { useTranslation } from 'react-i18next';
+import { useFormik } from 'formik';
 
 export const LoginPage = () => {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
+
+  const formik = useFormik({
+    initialValues: {
+      username: '',
+      password: ''
+    },
+    onSubmit: values => console.log(values)
+  });
 
   return (
     <Container className='h-100' fluid>
@@ -17,10 +26,14 @@ export const LoginPage = () => {
                 <img className='rounded-circle' src={loginImage} />
               </Col>
 
-              <Form className='col-12 col-md-6 mt-3 mt-mb-0'>
+              <Form onSubmit={formik.handleSubmit} className='col-12 col-md-6 mt-3 mt-mb-0'>
                 <h1 className='text-center mb-4'>{t('loginPage.enter')}</h1>
                 <FloatingLabel className='mb-3' label={t('loginPage.yourUsername')}>
                   <Form.Control
+                    onChange={formik.handleChange}
+                    value={formik.values.username}
+                    disabled={formik.isSubmitting}
+                    onBlur={formik.handleBlur}
                     type='text'
                     name='username'
                     autoComplete='username'
@@ -31,6 +44,10 @@ export const LoginPage = () => {
                 </FloatingLabel>
                 <FloatingLabel className='mb-4' label={t('password')}>
                   <Form.Control
+                    onChange={formik.handleChange}
+                    value={formik.values.password}
+                    disabled={formik.isSubmitting}
+                    onBlur={formik.handleBlur}
                     type='password'
                     name='password'
                     autoComplete='password'
@@ -40,7 +57,7 @@ export const LoginPage = () => {
                   />
                 </FloatingLabel>
 
-                <Button type='submit' className='w-100 mb-3' variant='outline-primary'>
+                <Button type='submit' disabled={formik.isSubmitting} className='w-100 mb-3' variant='outline-primary'>
                   {t('loginPage.enter')}
                 </Button>
               </Form>

@@ -1,7 +1,7 @@
-import i18next from "i18next";
-import { initReactI18next, I18nextProvider } from "react-i18next";
+import i18next from 'i18next';
+import { initReactI18next, I18nextProvider } from 'react-i18next';
 import resources from './locales/index.ts';
-import { App } from "./pages/App";
+import { App } from './pages/App';
 
 export const Init = () => {
   const i18n = i18next.createInstance();
@@ -17,4 +17,4 @@ export const Init = () => {
       <App />
     </I18nextProvider>
   );
-}
+};

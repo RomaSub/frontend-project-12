@@ -4,7 +4,7 @@ import { getRoutes } from '../routes';
 import { useTranslation } from 'react-i18next';
 
 const Header = () => {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <Navbar expand='lg' className='shadow-sm'>

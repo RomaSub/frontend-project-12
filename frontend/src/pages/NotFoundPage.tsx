@@ -4,8 +4,8 @@ import { getRoutes } from '../routes';
 import { useTranslation } from 'react-i18next';
 
 export const NotFoundPage = () => {
-    const {t} = useTranslation()
-  
+  const { t } = useTranslation();
+
   return (
     <div className='text-center'>
       <img className='img-fluid h-25' src={notFoundImage} />
