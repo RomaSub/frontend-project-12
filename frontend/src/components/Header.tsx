@@ -7,7 +7,7 @@ const Header = () => {
     <Navbar expand='lg' className='shadow-sm'>
       <Container>
         <Navbar.Brand as={Link} to={getRoutes.chatPagePath()}>
-          Hexlet
+          Hexlet Chat
         </Navbar.Brand>
       </Container>
     </Navbar>
