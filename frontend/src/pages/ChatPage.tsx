@@ -1,12 +1,19 @@
 import { Link } from 'react-router-dom';
 import { getRoutes } from '../routes';
-import { useAddChannelMutation, useGetChannelsQuery } from '../services/channelsApi';
+import { useAddChannelMutation, useGetChannelsQuery, useRemoveChannelMutation } from '../services/channelsApi';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import { useState } from 'react';
+
+type Channel = {
+  name: string;
+  id: string;
+  removable: boolean;
+};
 
 export const ChatPage = () => {
   const { data: channels, refetch, isLoading } = useGetChannelsQuery({});
   const [text, setText] = useState('');
+  const [removeChannel] = useRemoveChannelMutation();
   const [addChannel] = useAddChannelMutation();
 
   if (isLoading) return <div>Loading...</div>;
@@ -16,6 +23,12 @@ export const ChatPage = () => {
     if (text.trim() === '') return;
     addChannel({ name: text });
     setText('');
+    refetch();
+  };
+
+  const handleRemove = (e, channel: Channel) => {
+    e.preventDefault();
+    if (channel.removable) removeChannel(channel.id);
     refetch();
   };
 
@@ -33,7 +46,15 @@ export const ChatPage = () => {
         />
         <Button onClick={handleClick}>Добавить канал</Button>
       </InputGroup>
-      <ul>{channels && channels.map(channel => <li key={channel.id}>{channel.name}</li>)}</ul>
+      <ul>
+        {channels &&
+          channels.map((channel: Channel) => (
+            <li key={channel.id}>
+              {channel.name}
+              <Button onClick={e => handleRemove(e, channel)}>X</Button>
+            </li>
+          ))}
+      </ul>
       <Link to={getRoutes.loginPagePath()}>Login</Link>
     </>
   );

@@ -7,7 +7,7 @@ import { useFormik } from 'formik';
 import axios from 'axios';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { logIn } from '../services/slices/authSlice';
+import { logIn } from '../services/authSlice';
 
 export const LoginPage = () => {
   const dispatch = useDispatch()
