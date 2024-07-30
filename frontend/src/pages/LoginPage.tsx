@@ -1,19 +1,39 @@
 import { Button, Card, Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import loginImage from '../assets/enterAvatar.jpeg';
 import { getRoutes } from '../routes';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
+import axios from 'axios';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { logIn } from '../services/slices/authSlice';
 
 export const LoginPage = () => {
+  const dispatch = useDispatch()
+  const [authFailed, setAuthFailed] = useState(false);
   const { t } = useTranslation();
+  const navigate = useNavigate()
 
   const formik = useFormik({
     initialValues: {
       username: '',
       password: ''
     },
-    onSubmit: values => console.log(values)
+    onSubmit: async values => {
+      try {
+        const { data } = await axios.post(getRoutes.loginPath(), values);
+        const {username, token} = data
+        dispatch(logIn({username, token}))
+        navigate(getRoutes.chatPagePath())
+      } catch (err) {
+        formik.setSubmitting(false);
+        if (err.isAxiosError && err.response.status === 401) {
+          setAuthFailed(true);
+          return;
+        }
+      }
+    }
   });
 
   return (
@@ -34,6 +54,7 @@ export const LoginPage = () => {
                     value={formik.values.username}
                     disabled={formik.isSubmitting}
                     onBlur={formik.handleBlur}
+                    isInvalid={authFailed}
                     type='text'
                     name='username'
                     autoComplete='username'
@@ -47,6 +68,7 @@ export const LoginPage = () => {
                     onChange={formik.handleChange}
                     value={formik.values.password}
                     disabled={formik.isSubmitting}
+                    isInvalid={authFailed}
                     onBlur={formik.handleBlur}
                     type='password'
                     name='password'
@@ -55,6 +77,9 @@ export const LoginPage = () => {
                     id='password'
                     placeholder={t('password')}
                   />
+                  <Form.Control.Feedback type='invalid' tooltip>
+                    {t('loginPage.noValidUsername')}
+                  </Form.Control.Feedback>
                 </FloatingLabel>
 
                 <Button type='submit' disabled={formik.isSubmitting} className='w-100 mb-3' variant='outline-primary'>

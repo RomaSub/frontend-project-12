@@ -1,10 +1,10 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Header from '../components/Header';
 import { getRoutes } from '../routes';
-import { ChatPage } from './ChatPage';
 import { LoginPage } from './LoginPage';
 import { NotFoundPage } from './NotFoundPage';
 import { SignUpPage } from './SignUpPage';
+import { PrivateRoute } from './PrivateRoute';
 
 export const App = () => {
   return (
@@ -15,7 +15,7 @@ export const App = () => {
           <Routes>
             <Route path={getRoutes.loginPagePath()} element={<LoginPage />} />
             <Route path={getRoutes.signUpPagePath()} element={<SignUpPage />} />
-            <Route path={getRoutes.chatPagePath()} element={<ChatPage />} />
+            <Route path={getRoutes.chatPagePath()} element={<PrivateRoute />} />
             <Route path='*' element={<NotFoundPage />} />
           </Routes>
         </Router>

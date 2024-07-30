@@ -2,6 +2,8 @@ import i18next from 'i18next';
 import { initReactI18next, I18nextProvider } from 'react-i18next';
 import resources from './locales/index.ts';
 import { App } from './pages/App';
+import { Provider } from 'react-redux';
+import { store } from './services/store.ts';
 
 export const Init = () => {
   const i18n = i18next.createInstance();
@@ -12,9 +14,12 @@ export const Init = () => {
       escapeValue: false
     }
   });
+
   return (
-    <I18nextProvider i18n={i18n}>
-      <App />
-    </I18nextProvider>
+    <Provider store={store}>
+      <I18nextProvider i18n={i18n}>
+        <App />
+      </I18nextProvider>
+    </Provider>
   );
 };
