@@ -18,7 +18,6 @@ export const InputField = ({channelId}: InputFieldProps) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newMessage = {username, channelId, body}
-    console.log(newMessage)
     addMessage(newMessage)
     setBody('')
   }
