@@ -41,7 +41,10 @@ const ru = {
     modal: {
       addChannel: 'Добавить канал',
       send: 'Отправить',
-      cancel: 'Отменить'
+      cancel: 'Отменить',
+      deleteChannel: 'Удалить канал',
+      sure: 'Уверены?',
+      delete: 'Удалить'
     },
     password: 'Пароль',
     signUp: 'Регистрация'

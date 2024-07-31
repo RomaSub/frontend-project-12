@@ -1,8 +1,7 @@
 import { useDispatch } from 'react-redux';
-import { setCurrentChannel } from '../../services/uiSlice';
+import { openModal, setCurrentChannel } from '../../services/uiSlice';
 import type { ChannelTypes } from '../../types/chat';
 import { Button, ButtonGroup, Dropdown } from 'react-bootstrap';
-import { t } from 'i18next';
 import { useTranslation } from 'react-i18next';
 
 interface ChannelProps {
@@ -11,12 +10,20 @@ interface ChannelProps {
 }
 
 export const Channel = ({ channel, isCurrent }: ChannelProps) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const variant = isCurrent ? 'secondary' : 'light';
 
   const handleSetCurrent = (id: string) => {
     dispatch(setCurrentChannel({ channelId: id }));
+  };
+
+  const handleRenameModal = () => {
+    dispatch(openModal({ type: 'edit', channelId: null }));
+  };
+
+  const handleDeleteModal = () => {
+    dispatch(openModal({ type: 'delete', channelId: null }));
   };
 
   return (
@@ -37,8 +44,8 @@ export const Channel = ({ channel, isCurrent }: ChannelProps) => {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item>{t('chatPage.delete')}</Dropdown.Item>
-            <Dropdown.Item>{t('chatPage.rename')}</Dropdown.Item>
+            <Dropdown.Item onClick={handleDeleteModal}>{t('chatPage.delete')}</Dropdown.Item>
+            <Dropdown.Item onClick={handleRenameModal}>{t('chatPage.rename')}</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       ) : (

@@ -13,7 +13,7 @@ export const Add = ({ closeModal }) => {
     },
     onSubmit: name => {
       addChannel(name);
-      closeModal()
+      closeModal();
     }
   });
 
@@ -36,8 +36,12 @@ export const Add = ({ closeModal }) => {
               disabled={formik.isSubmitting}
             />
             <div className='d-flex justify-content-end'>
-              <Button variant='secondary' className='me-2'>{t('modal.cancel')}</Button>
-              <Button type="submit"  className='me-2'>{t('modal.send')}</Button>
+              <Button variant='secondary' className='me-2' onClick={closeModal}>
+                {t('modal.cancel')}
+              </Button>
+              <Button type='submit' className='me-2'>
+                {t('modal.send')}
+              </Button>
             </div>
           </Form.Group>
         </Form>
