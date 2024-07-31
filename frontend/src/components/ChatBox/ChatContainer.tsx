@@ -31,7 +31,7 @@ export const ChatContainer = () => {
           </span>
         </div>
         <MessagesField messages={currentChannelMessages}/>
-        <InputField />
+        <InputField channelId={activeChannelId} />
       </div>
     </Col>
   );
