@@ -1,41 +1,30 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { RootState } from './store';
-
-const baseQuery = fetchBaseQuery({
-  baseUrl: '/api/v1/channels',
-  prepareHeaders: (headers, { getState }) => {
-    const token = (getState() as RootState).auth.token;
-    if (token) {
-      headers.set('Authorization', `Bearer ${token}`);
-    }
-    return headers;
-  },
-});
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { baseQuery } from './apiConfig';
 
 export const channelsApi = createApi({
-  reducerPath: 'tasksApi',
+  reducerPath: 'channelsApi',
   baseQuery,
   endpoints: builder => ({
     getChannels: builder.query({
-      query: () => ''
+      query: () => 'channels'
     }),
     addChannel: builder.mutation({
       query: channelName => ({
-        url: '',
+        url: 'channels',
         method: 'POST',
         body: channelName
       })
     }),
     editChannel: builder.mutation({
       query: ({ channelName, channelId }) => ({
-        url: `${channelId}`,
+        url: `channels/${channelId}`,
         method: 'PATCH',
         body: channelName
       })
     }),
     removeChannel: builder.mutation({
       query: channelId => ({
-        url: channelId,
+        url: `channels/${channelId}`,
         method: 'DELETE'
       })
     })
