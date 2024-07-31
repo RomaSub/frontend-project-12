@@ -1,11 +1,12 @@
 import { Col } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
-import type { RootState } from '../../services/store';
-import type { MessageTypes } from '../../types/chat';
-import { useGetChannelsQuery } from '../../services/channelsApi';
-import type { ChannelTypes } from '../../types/chat';
-import { useGetMessagesQuery } from '../../services/messagesApi';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { useGetChannelsQuery } from '../../services/channelsApi';
+import { useGetMessagesQuery } from '../../services/messagesApi';
+import type { RootState } from '../../services/store';
+import type { ChannelTypes, MessageTypes } from '../../types/chat';
+import { InputField } from './InputField';
+import { MessagesField } from './MessagesField';
 
 export const ChatContainer = () => {
   const { t } = useTranslation()
@@ -29,6 +30,8 @@ export const ChatContainer = () => {
               {t('chatPage.messages', {count: currentChannelMessages.length})}
           </span>
         </div>
+        <MessagesField messages={currentChannelMessages}/>
+        <InputField />
       </div>
     </Col>
   );
