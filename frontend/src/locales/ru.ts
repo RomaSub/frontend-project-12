@@ -38,6 +38,11 @@ const ru = {
       messages_few: '{{count}} сообщения',
       messages_many: '{{count}} сообщений'
     },
+    modal: {
+      addChannel: 'Добавить канал',
+      send: 'Отправить',
+      cancel: 'Отменить'
+    },
     password: 'Пароль',
     signUp: 'Регистрация'
   }

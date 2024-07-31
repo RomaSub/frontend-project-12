@@ -1,35 +1,22 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { baseQuery } from './apiConfig';
-import { io } from 'socket.io-client';
+import { baseQuery, socket } from './apiConfig';
 
 export const messagesApi = createApi({
   reducerPath: 'messagesApi',
   baseQuery,
+  tagTypes: ['Message'],
   endpoints: builder => ({
     getMessages: builder.query({
       query: () => 'messages',
-      async onCacheEntryAdded(_, { cacheDataLoaded, updateCachedData, cacheEntryRemoved }) {
-        const socket = io('http://localhost:5001/', { transports: ['websocket'] });
-        try {
-          await cacheDataLoaded;
-          socket.on('newMessage', (message: any) => {
-            updateCachedData(draft => {
-              draft.push(message);
-            });
-          });
-        } catch (error) {
-          console.error('Ошибка при загрузке данных или установке WebSocket:', error);
-        }
-        await cacheEntryRemoved;
-        socket.disconnect();
-      }
+      providesTags: ['Message']
     }),
     addMessage: builder.mutation({
       query: message => ({
         url: 'messages',
         method: 'POST',
         body: message
-      })
+      }),
+      invalidatesTags: ['Message']
     })
   })
 });
