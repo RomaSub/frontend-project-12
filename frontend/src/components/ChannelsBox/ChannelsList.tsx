@@ -8,7 +8,6 @@ export const ChannelsList = () => {
   const {data: channels, isLoading} = useGetChannelsQuery({})
   const activeChannelId = useSelector((state: RootState) => state.ui.activeChannelId)
 
-  console.log(activeChannelId)
   if (isLoading) return <div>...</div>
 
     return (
