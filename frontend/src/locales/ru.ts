@@ -27,6 +27,9 @@ const ru = {
       signUp: 'Зарегистрироваться'
     },
     chatPage: {
+      delete: 'Удалить',
+      menu: 'Управление каналом',
+      rename: 'Переименовать',
       channels: 'Каналы',
       messagePlaceholder: 'Введите сообщение...',
       send: 'отправить',
