@@ -34,12 +34,12 @@ const uiSlice = createSlice({
         channelId: payload.channelId ?? null
       };
     },
-    closeModal: (state ) => {
+    closeModal: state => {
       state.modal = {
         isOpened: false,
         type: null,
         channelId: null
-      }
+      };
     }
   },
   extraReducers: builder => {

@@ -1,6 +1,5 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query';
 import type { RootState } from './store';
-import { io } from 'socket.io-client';
 
 export const baseQuery = fetchBaseQuery({
   baseUrl: '/api/v1/',
@@ -10,6 +9,5 @@ export const baseQuery = fetchBaseQuery({
       headers.set('Authorization', `Bearer ${token}`);
     }
     return headers;
-  },
+  }
 });
-

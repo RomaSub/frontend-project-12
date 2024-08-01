@@ -5,15 +5,20 @@ import { getRoutes } from '../routes';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../services/authSlice';
 
 export const LoginPage = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [authFailed, setAuthFailed] = useState(false);
   const { t } = useTranslation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -23,9 +28,9 @@ export const LoginPage = () => {
     onSubmit: async values => {
       try {
         const { data } = await axios.post(getRoutes.loginPath(), values);
-        const {username, token} = data
-        dispatch(logIn({username, token}))
-        navigate(getRoutes.chatPagePath())
+        const { username, token } = data;
+        dispatch(logIn({ username, token }));
+        navigate(getRoutes.chatPagePath());
       } catch (err) {
         formik.setSubmitting(false);
         if (err.isAxiosError && err.response.status === 401) {
@@ -50,6 +55,7 @@ export const LoginPage = () => {
                 <h1 className='text-center mb-4'>{t('loginPage.enter')}</h1>
                 <FloatingLabel className='mb-3' label={t('loginPage.yourUsername')}>
                   <Form.Control
+                    ref={inputRef}
                     onChange={formik.handleChange}
                     value={formik.values.username}
                     disabled={formik.isSubmitting}

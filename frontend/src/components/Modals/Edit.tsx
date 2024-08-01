@@ -5,20 +5,26 @@ import { useEditChannelMutation, useGetChannelsQuery } from '../../services/chan
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../services/store';
 import type { ChannelTypes } from '../../types/chat';
+import { useEffect, useRef } from 'react';
 
-export const Edit = ({ closeModal }) => {
+export const Edit = ({ closeModal }: { closeModal: () => void }) => {
   const { t } = useTranslation();
   const [editChannel] = useEditChannelMutation();
   const { data: channels } = useGetChannelsQuery({});
   const channelId = useSelector((state: RootState) => state.ui.modal.channelId);
   const currentChannelName = channels.find((channel: ChannelTypes) => channel.id === channelId).name;
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.select();
+  }, []);
 
   const formik = useFormik({
     initialValues: {
       name: currentChannelName
     },
     onSubmit: name => {
-      console.log(name, channelId)
+      console.log(name, channelId);
       editChannel({ name, channelId });
       closeModal();
     }
@@ -41,6 +47,7 @@ export const Edit = ({ closeModal }) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               disabled={formik.isSubmitting}
+              ref={inputRef}
             />
             <div className='d-flex justify-content-end'>
               <Button variant='secondary' className='me-2' onClick={closeModal}>

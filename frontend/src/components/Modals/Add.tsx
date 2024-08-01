@@ -2,10 +2,16 @@ import { useFormik } from 'formik';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useAddChannelMutation } from '../../services/channelsApi';
+import { useEffect, useRef } from 'react';
 
-export const Add = ({ closeModal }) => {
+export const Add = ({ closeModal }: { closeModal: () => void }) => {
   const [addChannel] = useAddChannelMutation();
   const { t } = useTranslation();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -34,6 +40,7 @@ export const Add = ({ closeModal }) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               disabled={formik.isSubmitting}
+              ref={inputRef}
             />
             <div className='d-flex justify-content-end'>
               <Button variant='secondary' className='me-2' onClick={closeModal}>

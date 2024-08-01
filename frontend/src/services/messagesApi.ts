@@ -1,5 +1,5 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { baseQuery, socket } from './apiConfig';
+import { baseQuery } from './apiConfig';
 
 export const messagesApi = createApi({
   reducerPath: 'messagesApi',

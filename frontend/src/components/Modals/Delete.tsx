@@ -4,14 +4,14 @@ import { useSelector } from 'react-redux';
 import { useRemoveChannelMutation } from '../../services/channelsApi';
 import type { RootState } from '../../services/store';
 
-export const Delete = ({ closeModal }) => {
+export const Delete = ({ closeModal }: { closeModal: () => void }) => {
   const [removeChannel] = useRemoveChannelMutation();
   const channelId = useSelector((state: RootState) => state.ui.modal.channelId);
   const { t } = useTranslation();
 
   const handleDelete = () => {
-      removeChannel(channelId);
-      closeModal();
+    removeChannel(channelId);
+    closeModal();
   };
 
   return (

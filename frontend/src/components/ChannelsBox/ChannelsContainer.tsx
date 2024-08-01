@@ -5,12 +5,12 @@ import { openModal } from '../../services/uiSlice';
 import { ChannelsList } from './ChannelsList';
 
 export const ChannelsContainer = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const handleAddModal = () => {
-    dispatch(openModal({type: 'add', channelId: null}))
-  }
+    dispatch(openModal({ type: 'add', channelId: null }));
+  };
 
   return (
     <Col xss={4} md={2} className='border-end px-0 flex-column h-100 d-flex'>

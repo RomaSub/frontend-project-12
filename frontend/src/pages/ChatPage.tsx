@@ -13,19 +13,19 @@ export const ChatPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    socket.on('newMessage', _ => {
+    socket.on('newMessage', () => {
       dispatch(messagesApi.util.invalidateTags(['Message']));
     });
 
-    socket.on('newChannel', _ => {
+    socket.on('newChannel', () => {
       dispatch(channelsApi.util.invalidateTags(['Channel']));
     });
 
-    socket.on('removeChannel', _ => {
+    socket.on('removeChannel', () => {
       dispatch(channelsApi.util.invalidateTags(['Channel']));
     });
 
-    socket.on('renameChannel', _ => {
+    socket.on('renameChannel', () => {
       dispatch(channelsApi.util.invalidateTags(['Channel']));
     });
 

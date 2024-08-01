@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { selectIsAuthenticated } from '../services/authSlice';
 
 export const PrivateRoute = () => {
-  const isAuthenticated = useSelector(selectIsAuthenticated)
+  const isAuthenticated = useSelector(selectIsAuthenticated);
 
   return isAuthenticated ? <ChatPage /> : <Navigate to={getRoutes.loginPagePath()} />;
 };

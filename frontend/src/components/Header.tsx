@@ -7,7 +7,6 @@ import { LogoutButton } from './LogoutButton';
 const Header = () => {
   const { t } = useTranslation();
 
-
   return (
     <Navbar expand='lg' className='shadow-sm'>
       <Container>
