@@ -19,11 +19,11 @@ export const Channel = ({ channel, isCurrent }: ChannelProps) => {
   };
 
   const handleRenameModal = () => {
-    dispatch(openModal({ type: 'edit', channelId: null }));
+    dispatch(openModal({ type: 'edit', channelId: channel.id }));
   };
 
   const handleDeleteModal = () => {
-    dispatch(openModal({ type: 'delete', channelId: null }));
+    dispatch(openModal({ type: 'delete', channelId: channel.id }));
   };
 
   return (

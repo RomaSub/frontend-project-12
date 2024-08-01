@@ -44,7 +44,8 @@ const ru = {
       cancel: 'Отменить',
       deleteChannel: 'Удалить канал',
       sure: 'Уверены?',
-      delete: 'Удалить'
+      delete: 'Удалить',
+      renameChannel: 'Переименовать канал'
     },
     password: 'Пароль',
     signUp: 'Регистрация'

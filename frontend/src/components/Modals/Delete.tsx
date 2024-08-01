@@ -10,12 +10,8 @@ export const Delete = ({ closeModal }) => {
   const { t } = useTranslation();
 
   const handleDelete = () => {
-    try {
       removeChannel(channelId);
-    } catch (err) {
-      console.log(err);
-    }
-    closeModal();
+      closeModal();
   };
 
   return (

@@ -19,10 +19,10 @@ export const channelsApi = createApi({
       invalidatesTags: ['Channel']
     }),
     editChannel: builder.mutation({
-      query: ({ channelName, channelId }) => ({
+      query: ({ name, channelId }) => ({
         url: `channels/${channelId}`,
         method: 'PATCH',
-        body: channelName
+        body: name
       }),
       invalidatesTags: ['Channel']
     }),
