@@ -1,8 +1,8 @@
 import { useFormik } from 'formik';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { useEffect, useRef } from 'react';
+import { Button, Form, Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useAddChannelMutation } from '../../services/channelsApi';
-import { useEffect, useRef } from 'react';
 
 export const Add = ({ closeModal }: { closeModal: () => void }) => {
   const [addChannel] = useAddChannelMutation();

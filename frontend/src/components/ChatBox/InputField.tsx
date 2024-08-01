@@ -1,20 +1,20 @@
+import { useEffect, useRef, useState } from 'react';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useAddMessageMutation } from '../../services/messagesApi';
 import type { RootState } from '../../services/store';
-import { useEffect, useRef, useState } from 'react';
 
 interface InputFieldProps {
   channelId: string;
 }
 
 export const InputField = ({ channelId }: InputFieldProps) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { t } = useTranslation();
+  const username = useSelector((state: RootState) => state.auth.username);
   const [addMessage] = useAddMessageMutation();
   const [body, setBody] = useState('');
-  const username = useSelector((state: RootState) => state.auth.username);
-  const { t } = useTranslation();
-  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     inputRef.current?.focus();

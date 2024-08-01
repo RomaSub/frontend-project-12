@@ -1,5 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQuery } from './apiConfig';
+import type { RootState } from './store';
 
 export const channelsApi = createApi({
   reducerPath: 'channelsApi',
@@ -37,3 +38,5 @@ export const channelsApi = createApi({
 });
 
 export const { useGetChannelsQuery, useEditChannelMutation, useAddChannelMutation, useRemoveChannelMutation } = channelsApi;
+
+export const selectChannelsData = (state: RootState) => channelsApi.endpoints.getChannels.select({})(state).data;

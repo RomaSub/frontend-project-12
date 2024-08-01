@@ -1,19 +1,20 @@
 import { useFormik } from 'formik';
+import { useEffect, useRef } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useEditChannelMutation, useGetChannelsQuery } from '../../services/channelsApi';
 import { useSelector } from 'react-redux';
-import type { RootState } from '../../services/store';
+import { selectChannelsData, useEditChannelMutation } from '../../services/channelsApi';
+import { selectChannelModalId } from '../../services/uiSlice';
 import type { ChannelTypes } from '../../types/chat';
-import { useEffect, useRef } from 'react';
 
 export const Edit = ({ closeModal }: { closeModal: () => void }) => {
-  const { t } = useTranslation();
-  const [editChannel] = useEditChannelMutation();
-  const { data: channels } = useGetChannelsQuery({});
-  const channelId = useSelector((state: RootState) => state.ui.modal.channelId);
-  const currentChannelName = channels.find((channel: ChannelTypes) => channel.id === channelId).name;
   const inputRef = useRef<HTMLInputElement>(null);
+  const { t } = useTranslation();
+  const channels = useSelector(selectChannelsData);
+  const channelId = useSelector(selectChannelModalId);
+  const [editChannel] = useEditChannelMutation();
+
+  const currentChannelName = channels.find((channel: ChannelTypes) => channel.id === channelId).name;
 
   useEffect(() => {
     inputRef.current?.select();
@@ -24,7 +25,6 @@ export const Edit = ({ closeModal }: { closeModal: () => void }) => {
       name: currentChannelName
     },
     onSubmit: name => {
-      console.log(name, channelId);
       editChannel({ name, channelId });
       closeModal();
     }

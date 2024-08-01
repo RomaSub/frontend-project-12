@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getRoutes } from '../routes';
-import { selectIsAuthenticated, logOut } from '../services/authSlice';
+import { logOut, selectIsAuthenticated } from '../services/authSlice';
 
 export const LogoutButton = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);

@@ -1,16 +1,20 @@
+import { useEffect } from 'react';
 import { Container, Row } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { io } from 'socket.io-client';
 import { ChannelsContainer } from '../components/ChannelsBox/ChannelsContainer';
 import { ChatContainer } from '../components/ChatBox/ChatContainer';
+import { CustomSpinner } from '../components/CustomSpinner';
 import { MainModal } from '../components/Modals/MainModal';
-import { io } from 'socket.io-client';
-import { useEffect } from 'react';
-import { messagesApi } from '../services/messagesApi';
-import { useDispatch } from 'react-redux';
-import { channelsApi } from '../services/channelsApi';
+import { channelsApi, useGetChannelsQuery } from '../services/channelsApi';
+import { messagesApi, useGetMessagesQuery } from '../services/messagesApi';
 
 export const ChatPage = () => {
-  const socket = io('http://localhost:5001/', { transports: ['websocket'] });
+  const { data: channels, isLoading: isLoadingChannels } = useGetChannelsQuery({});
+  const { data: messages, isLoading: isLoadingMessages } = useGetMessagesQuery({});
   const dispatch = useDispatch();
+
+  const socket = io('http://localhost:5001/', { transports: ['websocket'] });
 
   useEffect(() => {
     socket.on('newMessage', () => {
@@ -37,12 +41,14 @@ export const ChatPage = () => {
     };
   }, [dispatch, socket]);
 
+  if (isLoadingMessages || isLoadingChannels) return <CustomSpinner />;
+
   return (
     <Container className='h-100 my-4 overflow-hidden rounded shadow'>
       <Row className='row h-100 bg-white flex-md-row'>
         <MainModal />
         <ChannelsContainer />
-        <ChatContainer />
+        <ChatContainer channels={channels} messages={messages} />
       </Row>
     </Container>
   );

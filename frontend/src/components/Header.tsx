@@ -1,7 +1,7 @@
 import { Container, Navbar } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { getRoutes } from '../routes';
-import { useTranslation } from 'react-i18next';
 import { LogoutButton } from './LogoutButton';
 
 const Header = () => {

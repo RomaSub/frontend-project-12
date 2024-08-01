@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import type { MessageTypes } from '../../types/chat';
 
 interface MessagesFieldProps {

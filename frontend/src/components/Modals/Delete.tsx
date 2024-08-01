@@ -2,11 +2,11 @@ import { Button, Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useRemoveChannelMutation } from '../../services/channelsApi';
-import type { RootState } from '../../services/store';
+import { selectChannelModalId } from '../../services/uiSlice';
 
 export const Delete = ({ closeModal }: { closeModal: () => void }) => {
   const [removeChannel] = useRemoveChannelMutation();
-  const channelId = useSelector((state: RootState) => state.ui.modal.channelId);
+  const channelId = useSelector(selectChannelModalId);
   const { t } = useTranslation();
 
   const handleDelete = () => {

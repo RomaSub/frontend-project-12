@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { channelsApi } from './channelsApi';
+import { RootState } from './store';
 
 type UiState = {
   activeChannelId: string;
@@ -51,3 +52,5 @@ const uiSlice = createSlice({
 
 export const { setCurrentChannel, openModal, closeModal } = uiSlice.actions;
 export default uiSlice.reducer;
+export const selectActiveChannelId = (state: RootState) => state.ui.activeChannelId;
+export const selectChannelModalId = (state: RootState) => state.ui.modal.channelId;

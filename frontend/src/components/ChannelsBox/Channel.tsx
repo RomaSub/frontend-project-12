@@ -1,8 +1,8 @@
+import { Button, ButtonGroup, Dropdown } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { openModal, setCurrentChannel } from '../../services/uiSlice';
 import type { ChannelTypes } from '../../types/chat';
-import { Button, ButtonGroup, Dropdown } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
 
 interface ChannelProps {
   channel: ChannelTypes;
