@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
-import { selectChannelsData } from '../../services/channelsApi';
+import { selectChannels } from '../../services/channelsApi';
 import { selectActiveChannelId } from '../../services/uiSlice';
 import type { ChannelTypes } from '../../types/chat';
 import { Channel } from './Channel';
 
 export const ChannelsList = () => {
-  const channels = useSelector(selectChannelsData);
+  const channels = useSelector(selectChannels);
   const activeChannelId = useSelector(selectActiveChannelId);
 
   return (

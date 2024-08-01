@@ -33,7 +33,7 @@ const ru = {
       channels: 'Каналы',
       inputPlaceholder: 'Введите сообщение...',
       newMessage: 'Новое сообщение',
-      send: 'отправить',
+      send: 'Отправить',
       messages_one: '{{count}} сообщение',
       messages_few: '{{count}} сообщения',
       messages_many: '{{count}} сообщений'

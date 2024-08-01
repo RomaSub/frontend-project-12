@@ -47,6 +47,9 @@ const uiSlice = createSlice({
     builder.addMatcher(channelsApi.endpoints.removeChannel.matchFulfilled, state => {
       state.activeChannelId = '1';
     });
+    builder.addMatcher(channelsApi.endpoints.addChannel.matchFulfilled, (state, { payload }: PayloadAction<{ id: string }>) => {
+      state.activeChannelId = payload.id;
+    });
   }
 });
 

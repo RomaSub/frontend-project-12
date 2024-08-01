@@ -3,14 +3,14 @@ import { useEffect, useRef } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { selectChannelsData, useEditChannelMutation } from '../../services/channelsApi';
+import { selectChannels, useEditChannelMutation } from '../../services/channelsApi';
 import { selectChannelModalId } from '../../services/uiSlice';
 import type { ChannelTypes } from '../../types/chat';
 
 export const Edit = ({ closeModal }: { closeModal: () => void }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { t } = useTranslation();
-  const channels = useSelector(selectChannelsData);
+  const channels = useSelector(selectChannels);
   const channelId = useSelector(selectChannelModalId);
   const [editChannel] = useEditChannelMutation();
 

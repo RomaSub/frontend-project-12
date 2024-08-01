@@ -39,4 +39,4 @@ export const channelsApi = createApi({
 
 export const { useGetChannelsQuery, useEditChannelMutation, useAddChannelMutation, useRemoveChannelMutation } = channelsApi;
 
-export const selectChannelsData = (state: RootState) => channelsApi.endpoints.getChannels.select({})(state).data;
+export const selectChannels = (state: RootState) => channelsApi.endpoints.getChannels.select({})(state).data;
