@@ -24,6 +24,7 @@ const ru = {
     },
     chatPage: {
       delete: 'Удалить',
+      plus: '+',
       menu: 'Управление каналом',
       rename: 'Переименовать',
       channels: 'Каналы',
@@ -55,7 +56,7 @@ const ru = {
       channelCreate: 'Канал создан',
       channelRename: 'Канал переименован',
       channelDelete: 'Канал удален',
-      networkError: 'Ошибка в сети'
+      networkError: 'Ошибка соединения'
     },
     password: 'Пароль',
     signUp: 'Регистрация'

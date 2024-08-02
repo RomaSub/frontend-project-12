@@ -18,7 +18,7 @@ export const ChannelsContainer = () => {
         <b>{t('chatPage.channels')}</b>
         <Button type='button' variant='group-vertical' onClick={handleAddModal} className='p-0 text-primary'>
           <i className='bi bi-plus-square h5 m-0'></i>
-          <span className='visually-hidden'>+</span>
+          <span className='visually-hidden'>{t('chatPage.plus')}</span>
         </Button>
       </div>
       <ChannelsList />
