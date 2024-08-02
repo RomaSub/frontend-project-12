@@ -20,7 +20,6 @@ const ru = {
       existingUser: 'такой пользователь уже существует',
       username: 'Имя пользователя',
       confirmPassword: 'Подтвердите пароль',
-      notConfirmPassword: 'Пароли должны совпадать',
       signUp: 'Зарегистрироваться'
     },
     chatPage: {
@@ -48,7 +47,9 @@ const ru = {
     error: {
       invalidLength: 'От 3 до 20 символов',
       required: 'Обязательное поле',
-      uniq: 'Должно быть уникальным'
+      uniq: 'Должно быть уникальным',
+      shortPassword: 'Не менее 6 символов',
+      notConfirmPassword: 'Пароли должны совпадать'
     },
     password: 'Пароль',
     signUp: 'Регистрация'

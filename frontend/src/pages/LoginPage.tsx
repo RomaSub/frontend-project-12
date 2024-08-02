@@ -31,6 +31,7 @@ export const LoginPage = () => {
         dispatch(logIn(data));
         navigate(getRoutes.chatPagePath());
       } catch (err) {
+        inputRef.current?.select();
         formik.setSubmitting(false);
         if (err.isAxiosError && err.response.status === 401) {
           setAuthFailed(true);

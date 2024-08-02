@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import signupImage from '../assets/regAvatar.jpg';
 import { getRoutes } from '../routes';
 import { logIn } from '../services/authSlice';
+import { signupSchema } from '../utils/validations';
 
 export const SignUpPage = () => {
   const { t } = useTranslation();
@@ -25,6 +26,7 @@ export const SignUpPage = () => {
       password: '',
       confirmPassword: ''
     },
+    validationSchema: signupSchema(t),
     onSubmit: async ({ username, password }) => {
       try {
         const { data } = await axios.post(getRoutes.signUpPath(), { username, password });
@@ -55,6 +57,7 @@ export const SignUpPage = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     disabled={formik.isSubmitting}
+                    isInvalid={!!(formik.touched.username && formik.errors.username)}
                     ref={inputRef}
                     name='username'
                     id='username'
@@ -63,7 +66,9 @@ export const SignUpPage = () => {
                     placeholder={t('signUpPage.username')}
                     required
                   />
-                  <Form.Control.Feedback></Form.Control.Feedback>
+                  <Form.Control.Feedback type='invalid' tooltip>
+                    {formik.errors.username}
+                  </Form.Control.Feedback>
                 </FloatingLabel>
 
                 <FloatingLabel className='mb-3' label={t('password')}>
@@ -71,6 +76,7 @@ export const SignUpPage = () => {
                     value={formik.values.password}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
+                    isInvalid={!!(formik.touched.password && formik.errors.password)}
                     disabled={formik.isSubmitting}
                     name='password'
                     id='password'
@@ -79,7 +85,9 @@ export const SignUpPage = () => {
                     placeholder={t('password')}
                     required
                   />
-                  <Form.Control.Feedback></Form.Control.Feedback>
+                  <Form.Control.Feedback type='invalid' tooltip>
+                    {formik.errors.password}
+                  </Form.Control.Feedback>
                 </FloatingLabel>
 
                 <FloatingLabel className='mb-4' label={t('signUpPage.confirmPassword')}>
@@ -87,6 +95,7 @@ export const SignUpPage = () => {
                     value={formik.values.confirmPassword}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
+                    isInvalid={!!(formik.touched.confirmPassword && formik.errors.confirmPassword)}
                     disabled={formik.isSubmitting}
                     name='confirmPassword'
                     id='confirmPassword'
@@ -95,7 +104,9 @@ export const SignUpPage = () => {
                     placeholder={t('signUpPage.confirmPassword')}
                     required
                   />
-                  <Form.Control.Feedback></Form.Control.Feedback>
+                  <Form.Control.Feedback type='invalid' tooltip>
+                    {formik.errors.confirmPassword}
+                  </Form.Control.Feedback>
                 </FloatingLabel>
 
                 <Button type='submit' className='w-100' variant='outline-primary'>
