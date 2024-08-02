@@ -9,7 +9,7 @@ export const MessagesField = ({ messages }: MessagesFieldProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
+    scrollRef.current?.scrollIntoView({ behavior: 'auto' });
   });
 
   return (

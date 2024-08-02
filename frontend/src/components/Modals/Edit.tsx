@@ -1,13 +1,14 @@
 import { useFormik } from 'formik';
+import leoProfanity from 'leo-profanity';
 import { useEffect, useRef } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { selectChannels, useEditChannelMutation } from '../../services/channelsApi';
 import { selectChannelModalId } from '../../services/uiSlice';
 import type { ChannelTypes } from '../../types/chat';
 import { modalSchema } from '../../utils/validations';
-import { toast } from 'react-toastify';
 
 export const Edit = ({ closeModal }: { closeModal: () => void }) => {
   const { t } = useTranslation();
@@ -30,8 +31,9 @@ export const Edit = ({ closeModal }: { closeModal: () => void }) => {
     validationSchema: modalSchema(channelNames, t),
     validateOnChange: false,
     validateOnBlur: false,
-    onSubmit: async name => {
+    onSubmit: async values => {
       try {
+        const name = { name: leoProfanity.clean(values.name) };
         await editChannel({ name, channelId });
         closeModal();
         toast.success(t('toast.channelRename'));

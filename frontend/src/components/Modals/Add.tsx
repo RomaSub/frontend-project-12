@@ -1,11 +1,12 @@
 import { useFormik } from 'formik';
+import leoProfanity from 'leo-profanity';
 import { useEffect, useRef } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { selectChannels, useAddChannelMutation } from '../../services/channelsApi';
 import { modalSchema } from '../../utils/validations';
-import { toast } from 'react-toastify';
 
 export const Add = ({ closeModal }: { closeModal: () => void }) => {
   const { t } = useTranslation();
@@ -24,8 +25,9 @@ export const Add = ({ closeModal }: { closeModal: () => void }) => {
     validationSchema: modalSchema(channelNames, t),
     validateOnChange: false,
     validateOnBlur: false,
-    onSubmit: async name => {
+    onSubmit: async values => {
       try {
+        const name = { name: leoProfanity.clean(values.name) };
         await addChannel(name);
         closeModal();
         toast.success(t('toast.channelCreate'));

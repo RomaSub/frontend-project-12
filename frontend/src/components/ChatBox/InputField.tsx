@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
+import leoProfanity from 'leo-profanity';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useAddMessageMutation } from '../../services/messagesApi';
 import type { RootState } from '../../services/store';
+import { toast } from 'react-toastify';
 
 interface InputFieldProps {
   channelId: string;
@@ -20,11 +22,16 @@ export const InputField = ({ channelId }: InputFieldProps) => {
     inputRef.current?.focus();
   }, [channelId]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newMessage = { username, channelId, body };
-    addMessage(newMessage);
-    setBody('');
+    const filtredMessage = leoProfanity.clean(body);
+    const newMessage = { username, channelId, body: filtredMessage };
+    try {
+      await addMessage(newMessage);
+      setBody('');
+    } catch (err) {
+      toast.error(t('toast.networkError'));
+    }
   };
 
   return (
