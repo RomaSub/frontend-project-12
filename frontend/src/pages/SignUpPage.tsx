@@ -109,7 +109,7 @@ export const SignUpPage = () => {
                   </Form.Control.Feedback>
                 </FloatingLabel>
 
-                <Button type='submit' className='w-100' variant='outline-primary'>
+                <Button disabled={formik.isSubmitting} type='submit' className='w-100' variant='outline-primary'>
                   {t('signUpPage.signUp')}
                 </Button>
               </Form>
