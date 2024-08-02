@@ -1,7 +1,7 @@
+import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 import notFoundImage from '../assets/404image.svg';
 import { getRoutes } from '../routes';
-import { useTranslation } from 'react-i18next';
 
 export const NotFoundPage = () => {
   const { t } = useTranslation();

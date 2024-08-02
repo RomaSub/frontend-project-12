@@ -7,6 +7,7 @@ import { selectChannels, useEditChannelMutation } from '../../services/channelsA
 import { selectChannelModalId } from '../../services/uiSlice';
 import type { ChannelTypes } from '../../types/chat';
 import { modalSchema } from '../../utils/validations';
+import { toast } from 'react-toastify';
 
 export const Edit = ({ closeModal }: { closeModal: () => void }) => {
   const { t } = useTranslation();
@@ -33,8 +34,9 @@ export const Edit = ({ closeModal }: { closeModal: () => void }) => {
       try {
         await editChannel({ name, channelId });
         closeModal();
+        toast.success(t('toast.channelRename'));
       } catch (err) {
-        console.error(err);
+        toast.error(t('toast.networkError'));
         formik.setSubmitting(false);
       }
     }

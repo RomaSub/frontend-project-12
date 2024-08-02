@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { selectChannels, useAddChannelMutation } from '../../services/channelsApi';
 import { modalSchema } from '../../utils/validations';
+import { toast } from 'react-toastify';
 
 export const Add = ({ closeModal }: { closeModal: () => void }) => {
   const { t } = useTranslation();
@@ -27,8 +28,9 @@ export const Add = ({ closeModal }: { closeModal: () => void }) => {
       try {
         await addChannel(name);
         closeModal();
+        toast.success(t('toast.channelCreate'));
       } catch (err) {
-        console.error(err);
+        toast.error(t('toast.networkError'));
         formik.setSubmitting(false);
       }
     }

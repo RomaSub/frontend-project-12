@@ -5,6 +5,7 @@ import { LoginPage } from './LoginPage';
 import { NotFoundPage } from './NotFoundPage';
 import { SignUpPage } from './SignUpPage';
 import { PrivateRoute } from './PrivateRoute';
+import { ToastContainer } from 'react-toastify';
 
 export const App = () => {
   return (
@@ -18,6 +19,7 @@ export const App = () => {
             <Route path={getRoutes.chatPagePath()} element={<PrivateRoute />} />
             <Route path='*' element={<NotFoundPage />} />
           </Routes>
+          <ToastContainer autoClose={3000} closeOnClick />
         </Router>
       </div>
     </div>

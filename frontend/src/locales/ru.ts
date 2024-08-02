@@ -51,6 +51,12 @@ const ru = {
       shortPassword: 'Не менее 6 символов',
       notConfirmPassword: 'Пароли должны совпадать'
     },
+    toast: {
+      channelCreate: 'Канал создан',
+      channelRename: 'Канал переименован',
+      channelDelete: 'Канал удален',
+      networkError: 'Ошибка в сети'
+    },
     password: 'Пароль',
     signUp: 'Регистрация'
   }

@@ -4,6 +4,7 @@ import resources from './locales/index.ts';
 import { App } from './pages/App';
 import { Provider } from 'react-redux';
 import { store } from './services/store.ts';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Init = () => {
   const i18n = i18next.createInstance();
