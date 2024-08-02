@@ -41,7 +41,7 @@ export const InputField = ({ channelId }: InputFieldProps) => {
             required
             ref={inputRef}
           />
-          <Button type='submit' variant='group-vertical' disabled>
+          <Button type='submit' variant='group-vertical' disabled={body.trim() === ''}>
             <i className='bi bi-arrow-right-square m-0 h5'></i>
             <span className='visually-hidden'>{t('chatPage.send')}</span>
           </Button>

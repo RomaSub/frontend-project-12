@@ -2,12 +2,15 @@ import { useFormik } from 'formik';
 import { useEffect, useRef } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useAddChannelMutation } from '../../services/channelsApi';
+import { useSelector } from 'react-redux';
+import { selectChannels, useAddChannelMutation } from '../../services/channelsApi';
+import { modalSchema } from '../../utils/validations';
 
 export const Add = ({ closeModal }: { closeModal: () => void }) => {
-  const [addChannel] = useAddChannelMutation();
   const { t } = useTranslation();
   const inputRef = useRef<HTMLInputElement>(null);
+  const [addChannel] = useAddChannelMutation();
+  const channelNames = useSelector(selectChannels).map(({ name }: { name: string }) => name);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -17,9 +20,17 @@ export const Add = ({ closeModal }: { closeModal: () => void }) => {
     initialValues: {
       name: ''
     },
-    onSubmit: name => {
-      addChannel(name);
-      closeModal();
+    validationSchema: modalSchema(channelNames, t),
+    validateOnChange: false,
+    validateOnBlur: false,
+    onSubmit: async name => {
+      try {
+        await addChannel(name);
+        closeModal();
+      } catch (err) {
+        console.error(err);
+        formik.setSubmitting(false);
+      }
     }
   });
 
@@ -36,17 +47,22 @@ export const Add = ({ closeModal }: { closeModal: () => void }) => {
               type='text'
               name='name'
               id='name'
+              isInvalid={!!(formik.touched.name && formik.errors.name)}
               value={formik.values.name}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               disabled={formik.isSubmitting}
               ref={inputRef}
             />
+            <Form.Label className='visually-hidden' htmlFor='name'>
+              {t('modal.channelName')}
+            </Form.Label>
+            <Form.Control.Feedback type='invalid'>{formik.errors.name}</Form.Control.Feedback>
             <div className='d-flex justify-content-end'>
               <Button variant='secondary' className='me-2' onClick={closeModal}>
                 {t('modal.cancel')}
               </Button>
-              <Button type='submit' className='me-2'>
+              <Button disabled={formik.isSubmitting} type='submit'>
                 {t('modal.send')}
               </Button>
             </div>

@@ -14,7 +14,7 @@ export const MessagesField = ({ messages }: MessagesFieldProps) => {
 
   return (
     <div id='messages-box' className='chat-messages overflow-auto px-5'>
-      {messages.map((message: MessageTypes) => (
+      {messages?.map((message: MessageTypes) => (
         <div key={message.id} className='text-break mb-2' ref={scrollRef}>
           <b>{message.username}</b>
           {': '}

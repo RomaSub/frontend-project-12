@@ -16,8 +16,6 @@ const ru = {
       noValidUsername: 'Неверные имя пользователя или пароль'
     },
     signUpPage: {
-      minUsernameLenght: 'От 3 до 20 символов',
-      maxUsernameLenght: 'От 3 до 20 символов',
       minPasswordLenght: 'Не менее 6 символов',
       confirmPassword: 'пароли должны совпадать',
       existingUser: 'такой пользователь уже существует',
@@ -39,6 +37,7 @@ const ru = {
       messages_many: '{{count}} сообщений'
     },
     modal: {
+      channelName: 'Имя канала',
       addChannel: 'Добавить канал',
       send: 'Отправить',
       cancel: 'Отменить',
@@ -46,6 +45,11 @@ const ru = {
       sure: 'Уверены?',
       delete: 'Удалить',
       renameChannel: 'Переименовать канал'
+    },
+    error: {
+      invalidLength: 'От 3 до 20 символов',
+      required: 'Обязательное поле',
+      uniq: 'Должно быть уникальным'
     },
     password: 'Пароль',
     signUp: 'Регистрация'

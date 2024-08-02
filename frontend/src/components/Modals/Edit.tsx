@@ -6,15 +6,17 @@ import { useSelector } from 'react-redux';
 import { selectChannels, useEditChannelMutation } from '../../services/channelsApi';
 import { selectChannelModalId } from '../../services/uiSlice';
 import type { ChannelTypes } from '../../types/chat';
+import { modalSchema } from '../../utils/validations';
 
 export const Edit = ({ closeModal }: { closeModal: () => void }) => {
-  const inputRef = useRef<HTMLInputElement>(null);
   const { t } = useTranslation();
+  const inputRef = useRef<HTMLInputElement>(null);
   const channels = useSelector(selectChannels);
   const channelId = useSelector(selectChannelModalId);
   const [editChannel] = useEditChannelMutation();
 
-  const currentChannelName = channels.find((channel: ChannelTypes) => channel.id === channelId).name;
+  const currentChannelName: string = channels.find((channel: ChannelTypes) => channel.id === channelId).name;
+  const channelNames = channels.map(({ name }: { name: string }) => name);
 
   useEffect(() => {
     inputRef.current?.select();
@@ -24,9 +26,17 @@ export const Edit = ({ closeModal }: { closeModal: () => void }) => {
     initialValues: {
       name: currentChannelName
     },
-    onSubmit: name => {
-      editChannel({ name, channelId });
-      closeModal();
+    validationSchema: modalSchema(channelNames, t),
+    validateOnChange: false,
+    validateOnBlur: false,
+    onSubmit: async name => {
+      try {
+        await editChannel({ name, channelId });
+        closeModal();
+      } catch (err) {
+        console.error(err);
+        formik.setSubmitting(false);
+      }
     }
   });
 
@@ -43,17 +53,22 @@ export const Edit = ({ closeModal }: { closeModal: () => void }) => {
               type='text'
               name='name'
               id='name'
+              isInvalid={!!(formik.touched.name && formik.errors.name)}
               value={formik.values.name}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               disabled={formik.isSubmitting}
               ref={inputRef}
             />
+            <Form.Label className='visually-hidden' htmlFor='name'>
+              {t('modal.channelName')}
+            </Form.Label>
+            <Form.Control.Feedback type='invalid'>{formik.errors.name}</Form.Control.Feedback>
             <div className='d-flex justify-content-end'>
               <Button variant='secondary' className='me-2' onClick={closeModal}>
                 {t('modal.cancel')}
               </Button>
-              <Button type='submit' className='me-2'>
+              <Button disabled={formik.isSubmitting} type='submit'>
                 {t('modal.send')}
               </Button>
             </div>

@@ -25,7 +25,7 @@ export const Delete = ({ closeModal }: { closeModal: () => void }) => {
           <Button variant='secondary' className='me-2' onClick={closeModal}>
             {t('modal.cancel')}
           </Button>
-          <Button variant='danger' className='me-2' onClick={handleDelete}>
+          <Button variant='danger' onClick={handleDelete}>
             {t('modal.delete')}
           </Button>
         </div>
