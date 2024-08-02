@@ -17,10 +17,9 @@ const ru = {
     },
     signUpPage: {
       minPasswordLenght: 'Не менее 6 символов',
-      confirmPassword: 'пароли должны совпадать',
       existingUser: 'такой пользователь уже существует',
       username: 'Имя пользователя',
-      repeatPassword: 'Подтвердите пароль',
+      confirmPassword: 'Подтвердите пароль',
       notConfirmPassword: 'Пароли должны совпадать',
       signUp: 'Зарегистрироваться'
     },

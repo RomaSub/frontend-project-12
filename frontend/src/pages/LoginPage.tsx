@@ -28,8 +28,7 @@ export const LoginPage = () => {
     onSubmit: async values => {
       try {
         const { data } = await axios.post(getRoutes.loginPath(), values);
-        const { username, token } = data;
-        dispatch(logIn({ username, token }));
+        dispatch(logIn(data));
         navigate(getRoutes.chatPagePath());
       } catch (err) {
         formik.setSubmitting(false);
@@ -93,7 +92,6 @@ export const LoginPage = () => {
                 </Button>
               </Form>
             </Card.Body>
-
             <Card.Footer className='p-4'>
               {' '}
               <div className='text-center'>
