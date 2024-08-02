@@ -14,8 +14,8 @@ interface ChatContainerProps {
 export const ChatContainer = ({ channels, messages }: ChatContainerProps) => {
   const { t } = useTranslation();
   const activeChannelId = useSelector(selectActiveChannelId);
-  const activeChannel = channels.find((channel: ChannelTypes) => channel.id === activeChannelId);
-  const activeChannelMessages = messages.filter((message: MessageTypes) => message.channelId === activeChannelId);
+  const activeChannel = channels?.find((channel: ChannelTypes) => channel.id === activeChannelId);
+  const activeChannelMessages = messages?.filter((message: MessageTypes) => message.channelId === activeChannelId);
 
   return (
     <Col className='p-0 h-100'>
@@ -24,7 +24,7 @@ export const ChatContainer = ({ channels, messages }: ChatContainerProps) => {
           <p className='m-0'>
             <b>{`# ${activeChannel?.name}`}</b>
           </p>
-          <span className='text-muted'>{t('chatPage.messages', { count: activeChannelMessages.length })}</span>
+          <span className='text-muted'>{t('chatPage.messages', { count: activeChannelMessages?.length })}</span>
         </div>
         <MessagesField messages={activeChannelMessages} />
         <InputField channelId={activeChannelId} />

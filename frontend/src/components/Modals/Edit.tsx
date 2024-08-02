@@ -17,8 +17,8 @@ export const Edit = ({ closeModal }: { closeModal: () => void }) => {
   const channelId = useSelector(selectChannelModalId);
   const [editChannel] = useEditChannelMutation();
 
-  const currentChannelName: string = channels.find((channel: ChannelTypes) => channel.id === channelId).name;
-  const channelNames = channels.map(({ name }: { name: string }) => name);
+  const currentChannelName: string = channels?.find((channel: ChannelTypes) => channel.id === channelId).name;
+  const channelNames = channels?.map(({ name }: { name: string }) => name);
 
   useEffect(() => {
     inputRef.current?.select();

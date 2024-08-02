@@ -12,7 +12,7 @@ export const Add = ({ closeModal }: { closeModal: () => void }) => {
   const { t } = useTranslation();
   const inputRef = useRef<HTMLInputElement>(null);
   const [addChannel] = useAddChannelMutation();
-  const channelNames = useSelector(selectChannels).map(({ name }: { name: string }) => name);
+  const channelNames = useSelector(selectChannels)?.map(({ name }: { name: string }) => name);
 
   useEffect(() => {
     inputRef.current?.focus();
