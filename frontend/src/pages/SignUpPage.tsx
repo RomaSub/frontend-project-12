@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useFormik } from 'formik';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button, Card, Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -15,6 +15,7 @@ export const SignUpPage = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [userAlreadyExist, setUserAlreadyExist] = useState(false);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -33,6 +34,10 @@ export const SignUpPage = () => {
         dispatch(logIn(data));
         navigate(getRoutes.chatPagePath());
       } catch (err) {
+        if (err.isAxiosError && err.response.status === 409) {
+          setUserAlreadyExist(true);
+          return;
+        }
         formik.setSubmitting(false);
         console.error(err);
       }
@@ -51,13 +56,13 @@ export const SignUpPage = () => {
 
               <Form className='w-50' onSubmit={formik.handleSubmit}>
                 <h1 className='text-center mb-4'>{t('signUp')}</h1>
-                <FloatingLabel className='mb-3' label={t('signUpPage.username')}>
+                <FloatingLabel className='mb-3' label={t('signUpPage.username')} controlId='username'>
                   <Form.Control
                     value={formik.values.username}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     disabled={formik.isSubmitting}
-                    isInvalid={!!(formik.touched.username && formik.errors.username)}
+                    isInvalid={!!(formik.touched.username && formik.errors.username) || userAlreadyExist}
                     ref={inputRef}
                     name='username'
                     id='username'
@@ -71,12 +76,12 @@ export const SignUpPage = () => {
                   </Form.Control.Feedback>
                 </FloatingLabel>
 
-                <FloatingLabel className='mb-3' label={t('password')}>
+                <FloatingLabel className='mb-3' label={t('password')} controlId='password'>
                   <Form.Control
                     value={formik.values.password}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    isInvalid={!!(formik.touched.password && formik.errors.password)}
+                    isInvalid={!!(formik.touched.password && formik.errors.password) || userAlreadyExist}
                     disabled={formik.isSubmitting}
                     name='password'
                     id='password'
@@ -90,12 +95,12 @@ export const SignUpPage = () => {
                   </Form.Control.Feedback>
                 </FloatingLabel>
 
-                <FloatingLabel className='mb-4' label={t('signUpPage.confirmPassword')}>
+                <FloatingLabel className='mb-4' label={t('signUpPage.confirmPassword')} controlId='confirmPassword'>
                   <Form.Control
                     value={formik.values.confirmPassword}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    isInvalid={!!(formik.touched.confirmPassword && formik.errors.confirmPassword)}
+                    isInvalid={!!(formik.touched.confirmPassword && formik.errors.confirmPassword) || userAlreadyExist}
                     disabled={formik.isSubmitting}
                     name='confirmPassword'
                     id='confirmPassword'
@@ -105,7 +110,7 @@ export const SignUpPage = () => {
                     required
                   />
                   <Form.Control.Feedback type='invalid' tooltip>
-                    {formik.errors.confirmPassword}
+                    {userAlreadyExist ? t('signUpPage.userAlreadyExist') : formik.errors.confirmPassword}
                   </Form.Control.Feedback>
                 </FloatingLabel>
 

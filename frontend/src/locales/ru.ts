@@ -19,7 +19,7 @@ const ru = {
     },
     signUpPage: {
       minPasswordLenght: 'Не менее 6 символов',
-      existingUser: 'такой пользователь уже существует',
+      userAlreadyExist: 'Такой пользователь уже существует',
       username: 'Имя пользователя',
       confirmPassword: 'Подтвердите пароль',
       signUp: 'Зарегистрироваться'
@@ -57,7 +57,7 @@ const ru = {
     toast: {
       channelCreate: 'Канал создан',
       channelRename: 'Канал переименован',
-      channelDelete: 'Канал удален',
+      channelDelete: 'Канал удалён',
       networkError: 'Ошибка соединения'
     },
     password: 'Пароль',

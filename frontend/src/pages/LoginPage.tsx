@@ -53,7 +53,7 @@ export const LoginPage = () => {
 
               <Form onSubmit={formik.handleSubmit} className='col-12 col-md-6 mt-3 mt-mb-0'>
                 <h1 className='text-center mb-4'>{t('loginPage.enter')}</h1>
-                <FloatingLabel className='mb-3' label={t('loginPage.yourUsername')}>
+                <FloatingLabel className='mb-3' label={t('loginPage.yourUsername')} controlId='username'>
                   <Form.Control
                     ref={inputRef}
                     onChange={formik.handleChange}
@@ -69,7 +69,7 @@ export const LoginPage = () => {
                     placeholder={t('loginPage.yourUsername')}
                   />
                 </FloatingLabel>
-                <FloatingLabel className='mb-4' label={t('password')}>
+                <FloatingLabel className='mb-4' label={t('password')} controlId='password'>
                   <Form.Control
                     onChange={formik.handleChange}
                     value={formik.values.password}

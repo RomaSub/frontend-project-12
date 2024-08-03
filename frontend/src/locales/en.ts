@@ -19,7 +19,7 @@ const en = {
     },
     signUpPage: {
       minPasswordLenght: 'At least 6 characters',
-      existingUser: 'This user already exists',
+      userAlreadyExist: 'This user already exists',
       username: 'Username',
       confirmPassword: 'Confirm password',
       signUp: 'Submit'
