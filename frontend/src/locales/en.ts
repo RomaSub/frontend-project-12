@@ -2,7 +2,7 @@ const en = {
   translation: {
     header: {
       chatLogo: 'Hexlet Chat',
-      logout: 'Logout',
+      logout: 'Log out',
       ru: 'Русский',
       en: 'English'
     },
@@ -12,17 +12,17 @@ const en = {
       toHomePage: 'to the home page'
     },
     loginPage: {
-      enter: 'Login',
-      yourUsername: 'Your username',
-      noAccount: "Don't have an account?",
-      noValidUsername: 'Invalid username or password'
+      enter: 'Submit',
+      yourUsername: 'Your nickname',
+      noAccount: 'New to chat?',
+      noValidUsername: 'Username or password are incorrect'
     },
     signUpPage: {
       minPasswordLenght: 'At least 6 characters',
       existingUser: 'This user already exists',
       username: 'Username',
       confirmPassword: 'Confirm password',
-      signUp: 'Sign Up'
+      signUp: 'Submit'
     },
     chatPage: {
       delete: 'Delete',
@@ -30,9 +30,9 @@ const en = {
       menu: 'Channel management',
       rename: 'Rename',
       channels: 'Channels',
-      inputPlaceholder: 'Enter a message...',
+      inputPlaceholder: 'Start typing...',
       newMessage: 'New message',
-      send: 'Send',
+      send: 'Submit',
       messages_one: '{{count}} message',
       messages_other: '{{count}} messages'
     },
@@ -47,10 +47,10 @@ const en = {
       renameChannel: 'Rename channel'
     },
     error: {
-      invalidLength: 'From 3 to 20 characters',
-      required: 'Required field',
+      invalidLength: 'Must be from 3 to 20 characters',
+      required: 'Required',
       uniq: 'Must be unique',
-      shortPassword: 'At least 6 characters',
+      shortPassword: 'Must be > 6 characters',
       notConfirmPassword: 'Passwords must match'
     },
     toast: {
