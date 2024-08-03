@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { getRoutes } from '../routes';
 import { LogoutButton } from './LogoutButton';
 import { ThemeSwitcher } from './ThemeSwitcher';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 const Header = () => {
   const { t } = useTranslation();
@@ -16,6 +17,7 @@ const Header = () => {
         </Navbar.Brand>
         <Navbar.Collapse>
           <ThemeSwitcher />
+          <LanguageSwitcher />
         </Navbar.Collapse>
         <LogoutButton />
       </Container>

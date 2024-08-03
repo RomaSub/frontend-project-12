@@ -2,7 +2,9 @@ const ru = {
   translation: {
     header: {
       chatLogo: 'Hexlet Chat',
-      logout: 'Выйти'
+      logout: 'Выйти',
+      ru: 'Русский',
+      en: 'English'
     },
     notFoundPage: {
       pageNotFound: 'Страница не найдена',

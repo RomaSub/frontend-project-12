@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 
 type Theme = 'dark' | 'light';
 
