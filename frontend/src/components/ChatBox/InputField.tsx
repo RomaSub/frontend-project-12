@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
 import leoProfanity from 'leo-profanity';
+import { useEffect, useRef, useState } from 'react';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { useAddMessageMutation } from '../../services/messagesApi';
 import type { RootState } from '../../services/store';
-import { toast } from 'react-toastify';
 
 interface InputFieldProps {
   channelId: string;
