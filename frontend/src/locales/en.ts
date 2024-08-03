@@ -12,7 +12,7 @@ const en = {
       toHomePage: 'to the home page'
     },
     loginPage: {
-      enter: 'Submit',
+      enter: 'Login',
       yourUsername: 'Your nickname',
       noAccount: 'New to chat?',
       noValidUsername: 'Username or password are incorrect'
@@ -60,7 +60,7 @@ const en = {
       networkError: 'Network error'
     },
     password: 'Password',
-    signUp: 'Sign Up'
+    signUp: 'Sign up'
   }
 };
 
