@@ -5,6 +5,7 @@ import { RootState } from './store';
 
 type UiState = {
   activeChannelId: string;
+  activeTheme: 'dark' | 'light';
   modal: {
     type: 'add' | 'delete' | 'edit' | null;
     isOpened: boolean;
@@ -14,6 +15,7 @@ type UiState = {
 
 const initialState: UiState = {
   activeChannelId: '1',
+  activeTheme: (localStorage.getItem('theme') as 'dark' | 'light') || 'dark',
   modal: {
     isOpened: false,
     type: null,
@@ -41,6 +43,10 @@ const uiSlice = createSlice({
         type: null,
         channelId: null
       };
+    },
+    changeTheme: state => {
+      state.activeTheme = state.activeTheme === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', state.activeTheme);
     }
   },
   extraReducers: builder => {
@@ -53,7 +59,8 @@ const uiSlice = createSlice({
   }
 });
 
-export const { setCurrentChannel, openModal, closeModal } = uiSlice.actions;
+export const { setCurrentChannel, openModal, closeModal, changeTheme } = uiSlice.actions;
 export default uiSlice.reducer;
 export const selectActiveChannelId = (state: RootState) => state.ui.activeChannelId;
 export const selectChannelModalId = (state: RootState) => state.ui.modal.channelId;
+export const selectActiveTheme = (state: RootState) => state.ui.activeTheme;

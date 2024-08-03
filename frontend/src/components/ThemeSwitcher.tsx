@@ -1,29 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Button } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeTheme, selectActiveTheme } from '../services/uiSlice';
 
-type Theme = 'dark' | 'light';
-
-const getInitialTheme = (): Theme => {
-  return (localStorage.getItem('theme') as Theme) || 'dark';
-};
-
-export const ThemeSwitcher: React.FC = () => {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+export const ThemeSwitcher = () => {
+  const dispatch = useDispatch();
+  const activeTheme = useSelector(selectActiveTheme);
 
   useEffect(() => {
-    document.body.setAttribute('data-bs-theme', theme);
+    document.body.setAttribute('data-bs-theme', activeTheme);
     document.body.classList.remove('bg-light', 'bg-dark');
-    document.body.classList.add(theme === 'dark' ? 'bg-dark' : 'bg-light');
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+    document.body.classList.add(activeTheme === 'dark' ? 'bg-dark' : 'bg-light');
+  }, [activeTheme]);
 
-  const toggleTheme = () => {
-    setTheme(prevTheme => (prevTheme === 'dark' ? 'light' : 'dark'));
-  };
+  const toggleTheme = () => dispatch(changeTheme());
 
   return (
-    <Button variant={theme} onClick={toggleTheme}>
-      {theme === 'dark' ? <i className='bi bi-moon-stars-fill'></i> : <i className='bi bi-sun'></i>}
+    <Button variant={activeTheme} onClick={toggleTheme}>
+      {activeTheme === 'dark' ? <i className='bi bi-moon-stars-fill'></i> : <i className='bi bi-sun'></i>}
     </Button>
   );
 };
