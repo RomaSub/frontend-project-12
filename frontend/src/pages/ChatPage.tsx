@@ -14,7 +14,7 @@ export const ChatPage = () => {
   const { data: messages, isLoading: isLoadingMessages } = useGetMessagesQuery({});
   const dispatch = useDispatch();
 
-  const socket = io('http://localhost:5001/', { transports: ['websocket'] });
+  const socket = io();
 
   useEffect(() => {
     socket.on('newMessage', () => {
