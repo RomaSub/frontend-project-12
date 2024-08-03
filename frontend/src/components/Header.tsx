@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { getRoutes } from '../routes';
 import { LogoutButton } from './LogoutButton';
+import { ThemeSwitcher } from './ThemeSwitcher';
 
 const Header = () => {
   const { t } = useTranslation();
@@ -13,6 +14,9 @@ const Header = () => {
         <Navbar.Brand as={Link} to={getRoutes.chatPagePath()}>
           {t('header.chatLogo')}
         </Navbar.Brand>
+        <Navbar.Collapse>
+          <ThemeSwitcher />
+        </Navbar.Collapse>
         <LogoutButton />
       </Container>
     </Navbar>

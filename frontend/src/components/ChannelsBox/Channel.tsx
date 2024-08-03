@@ -12,7 +12,7 @@ interface ChannelProps {
 export const Channel = ({ channel, isCurrent }: ChannelProps) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const variant = isCurrent ? 'secondary' : 'light';
+  const variant = isCurrent ? 'secondary' : '';
 
   const handleSetCurrent = (id: string) => {
     dispatch(setCurrentChannel({ channelId: id }));
