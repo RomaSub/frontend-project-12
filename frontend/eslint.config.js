@@ -45,7 +45,6 @@ export default tseslint.config(
       'react/function-component-definition': ['warn', { namedComponents: 'arrow-function' }],
       'react/self-closing-comp': ['error', { component: true, html: true }],
       'max-lines': ['warn', { max: 200 }],
-      'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     },
     settings: {
       react: {
