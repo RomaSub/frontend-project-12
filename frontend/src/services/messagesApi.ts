@@ -8,17 +8,17 @@ export const messagesApi = createApi({
   endpoints: builder => ({
     getMessages: builder.query({
       query: () => 'messages',
-      providesTags: ['Message']
+      providesTags: ['Message'],
     }),
     addMessage: builder.mutation({
       query: message => ({
         url: 'messages',
         method: 'POST',
-        body: message
+        body: message,
       }),
-      invalidatesTags: ['Message']
-    })
-  })
+      invalidatesTags: ['Message'],
+    }),
+  }),
 });
 
 export const { useGetMessagesQuery, useAddMessageMutation } = messagesApi;

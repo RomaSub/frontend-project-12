@@ -19,8 +19,8 @@ const initialState: UiState = {
   modal: {
     isOpened: false,
     type: null,
-    channelId: null
-  }
+    channelId: null,
+  },
 };
 
 const uiSlice = createSlice({
@@ -34,20 +34,20 @@ const uiSlice = createSlice({
       state.modal = {
         isOpened: true,
         type: payload.type,
-        channelId: payload.channelId ?? null
+        channelId: payload.channelId ?? null,
       };
     },
     closeModal: state => {
       state.modal = {
         isOpened: false,
         type: null,
-        channelId: null
+        channelId: null,
       };
     },
     changeTheme: state => {
       state.activeTheme = state.activeTheme === 'dark' ? 'light' : 'dark';
       localStorage.setItem('theme', state.activeTheme);
-    }
+    },
   },
   extraReducers: builder => {
     builder.addMatcher(channelsApi.endpoints.removeChannel.matchFulfilled, state => {
@@ -56,7 +56,7 @@ const uiSlice = createSlice({
     builder.addMatcher(channelsApi.endpoints.addChannel.matchFulfilled, (state, { payload }: PayloadAction<{ id: string }>) => {
       state.activeChannelId = payload.id;
     });
-  }
+  },
 });
 
 export const { setCurrentChannel, openModal, closeModal, changeTheme } = uiSlice.actions;

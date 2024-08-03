@@ -20,7 +20,7 @@ export const Add = ({ closeModal }: { closeModal: () => void }) => {
 
   const formik = useFormik({
     initialValues: {
-      name: ''
+      name: '',
     },
     validationSchema: modalSchema(channelNames, t),
     validateOnChange: false,
@@ -35,7 +35,7 @@ export const Add = ({ closeModal }: { closeModal: () => void }) => {
         toast.error(t('toast.networkError'));
         formik.setSubmitting(false);
       }
-    }
+    },
   });
 
   return (

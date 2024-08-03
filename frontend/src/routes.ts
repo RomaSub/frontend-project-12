@@ -5,5 +5,5 @@ export const getRoutes = {
   signUpPath: () => [apiPath, 'signup'].join('/'),
   chatPagePath: () => '/',
   loginPagePath: () => '/login',
-  signUpPagePath: () => '/signup'
+  signUpPagePath: () => '/signup',
 };

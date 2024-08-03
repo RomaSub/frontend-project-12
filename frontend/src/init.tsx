@@ -15,8 +15,8 @@ export const Init = () => {
     resources,
     fallbackLng: lng,
     interpolation: {
-      escapeValue: false
-    }
+      escapeValue: false,
+    },
   });
 
   const filteredWords = leoProfanity.getDictionary('ru');

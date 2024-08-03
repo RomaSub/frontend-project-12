@@ -9,7 +9,7 @@ import { Delete } from './Delete';
 const variants = {
   add: Add,
   edit: Edit,
-  delete: Delete
+  delete: Delete,
 };
 
 export const MainModal = () => {

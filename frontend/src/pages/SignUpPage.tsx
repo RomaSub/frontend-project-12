@@ -25,7 +25,7 @@ export const SignUpPage = () => {
     initialValues: {
       username: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
     },
     validationSchema: signupSchema(t),
     onSubmit: async ({ username, password }) => {
@@ -41,7 +41,7 @@ export const SignUpPage = () => {
         formik.setSubmitting(false);
         console.error(err);
       }
-    }
+    },
   });
 
   return (

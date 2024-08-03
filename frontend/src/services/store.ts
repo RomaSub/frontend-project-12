@@ -9,9 +9,9 @@ export const store = configureStore({
     auth: authReducer,
     ui: uiReducer,
     [channelsApi.reducerPath]: channelsApi.reducer,
-    [messagesApi.reducerPath]: messagesApi.reducer
+    [messagesApi.reducerPath]: messagesApi.reducer,
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(channelsApi.middleware, messagesApi.middleware)
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(channelsApi.middleware, messagesApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -13,7 +13,7 @@ export const signupSchema = (t: TFunction) =>
     confirmPassword: yup
       .string()
       .required(t('error.required'))
-      .oneOf([yup.ref('password')], t('error.notConfirmPassword'))
+      .oneOf([yup.ref('password')], t('error.notConfirmPassword')),
   });
 
 export const modalSchema = (channelNames: string[], t: TFunction) =>
@@ -24,5 +24,5 @@ export const modalSchema = (channelNames: string[], t: TFunction) =>
       .min(3, t('error.invalidLength'))
       .max(20, t('error.invalidLength'))
       .required(t('error.required'))
-      .notOneOf(channelNames, t('error.uniq'))
+      .notOneOf(channelNames, t('error.uniq')),
   });

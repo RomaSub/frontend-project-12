@@ -26,7 +26,7 @@ export const Edit = ({ closeModal }: { closeModal: () => void }) => {
 
   const formik = useFormik({
     initialValues: {
-      name: currentChannelName
+      name: currentChannelName,
     },
     validationSchema: modalSchema(channelNames, t),
     validateOnChange: false,
@@ -41,7 +41,7 @@ export const Edit = ({ closeModal }: { closeModal: () => void }) => {
         toast.error(t('toast.networkError'));
         formik.setSubmitting(false);
       }
-    }
+    },
   });
 
   return (

@@ -14,11 +14,11 @@ export default tseslint.config(
       react: eslintReact,
       'react-hooks': eslintReactHooks,
       'react-refresh': eslintReactRefresh,
-      prettier: prettierPlugin
-    }
+      prettier: prettierPlugin,
+    },
   },
   {
-    ignores: ['vite.config.ts', 'dist', 'node_modules', 'eslint.config.js']
+    ignores: ['vite.config.ts', 'dist', 'node_modules', 'eslint.config.js'],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
@@ -27,12 +27,12 @@ export default tseslint.config(
       globals: {
         ...globals.browser,
         ...globals.node,
-        ...globals.es2020
+        ...globals.es2020,
       },
       parserOptions: {
-        project: ['tsconfig.json']
-      }
-    }
+        project: ['tsconfig.json'],
+      },
+    },
   },
   {
     files: ['*.ts', '*.tsx'],
@@ -44,12 +44,13 @@ export default tseslint.config(
       'react/jsx-curly-brace-presence': ['warn', { props: 'never', children: 'never' }],
       'react/function-component-definition': ['warn', { namedComponents: 'arrow-function' }],
       'react/self-closing-comp': ['error', { component: true, html: true }],
-      'max-lines': ['warn', { max: 200 }]
+      'max-lines': ['warn', { max: 200 }],
+      'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     },
     settings: {
       react: {
-        version: 'detect'
-      }
-    }
-  }
+        version: 'detect',
+      },
+    },
+  },
 );

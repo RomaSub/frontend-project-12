@@ -11,7 +11,7 @@ type AuthState = {
 const initialState: AuthState = {
   username: localStorage.getItem('username') || null,
   token: localStorage.getItem('token') || null,
-  isAuthenticated: localStorage.getItem('token') !== null
+  isAuthenticated: localStorage.getItem('token') !== null,
 };
 
 const authSlice = createSlice({
@@ -31,8 +31,8 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       localStorage.removeItem('username');
       localStorage.removeItem('token');
-    }
-  }
+    },
+  },
 });
 
 export const { logIn, logOut } = authSlice.actions;

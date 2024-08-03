@@ -23,7 +23,7 @@ export const LoginPage = () => {
   const formik = useFormik({
     initialValues: {
       username: '',
-      password: ''
+      password: '',
     },
     onSubmit: async values => {
       try {
@@ -38,7 +38,7 @@ export const LoginPage = () => {
           return;
         }
       }
-    }
+    },
   });
 
   return (
