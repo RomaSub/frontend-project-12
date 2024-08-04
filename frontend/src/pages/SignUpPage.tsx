@@ -65,7 +65,6 @@ export const SignUpPage = () => {
                     isInvalid={!!(formik.touched.username && formik.errors.username) || userAlreadyExist}
                     ref={inputRef}
                     name='username'
-                    id='username'
                     autoComplete='username'
                     type='text'
                     placeholder={t('signUpPage.username')}
@@ -84,7 +83,6 @@ export const SignUpPage = () => {
                     isInvalid={!!(formik.touched.password && formik.errors.password) || userAlreadyExist}
                     disabled={formik.isSubmitting}
                     name='password'
-                    id='password'
                     autoComplete='password'
                     type='password'
                     placeholder={t('password')}
@@ -103,7 +101,6 @@ export const SignUpPage = () => {
                     isInvalid={!!(formik.touched.confirmPassword && formik.errors.confirmPassword) || userAlreadyExist}
                     disabled={formik.isSubmitting}
                     name='confirmPassword'
-                    id='confirmPassword'
                     autoComplete='new-password'
                     type='password'
                     placeholder={t('signUpPage.confirmPassword')}

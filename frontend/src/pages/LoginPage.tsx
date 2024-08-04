@@ -65,7 +65,6 @@ export const LoginPage = () => {
                     name='username'
                     autoComplete='username'
                     required
-                    id='username'
                     placeholder={t('loginPage.yourUsername')}
                   />
                 </FloatingLabel>
@@ -80,7 +79,6 @@ export const LoginPage = () => {
                     name='password'
                     autoComplete='password'
                     required
-                    id='password'
                     placeholder={t('password')}
                   />
                   <Form.Control.Feedback type='invalid' tooltip>
