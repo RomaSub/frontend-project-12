@@ -7,9 +7,10 @@ import { Provider } from 'react-redux';
 import { store } from './services/store.ts';
 import 'react-toastify/dist/ReactToastify.css';
 
-const lng = localStorage.getItem('lng') || 'ru';
 
 export const Init = () => {
+  const lng = localStorage.getItem('lng') || 'ru';
+
   const i18n = i18next.createInstance();
   i18n.use(initReactI18next).init({
     resources,
