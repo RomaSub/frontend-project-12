@@ -32,8 +32,8 @@ export const InputField = ({ channelId }: InputFieldProps) => {
       try {
         const filtredMessage = leoProfanity.clean(body);
         const newMessage = { username, channelId, body: filtredMessage };
-
         await addMessage(newMessage);
+        formik.resetForm()
       } catch (err) {
         formik.setSubmitting(false);
         console.error(err);
